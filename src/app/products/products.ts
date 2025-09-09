@@ -17,8 +17,6 @@ export class Products {
     this.products = this.productService.getAll();
   }
 
-  
-
   removeProduct(id: number) {
     console.log('removeProduct !!');
     this.products = this.products.filter(product => product.id != id);

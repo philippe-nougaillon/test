@@ -2,13 +2,24 @@ import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Login } from './pages/login/login';
 import { NotFound } from './pages/not-found/not-found';
-import { Admin } from './pages/admin/admin';
 import { AuthGuard } from './core/guards/auth';
+import { Products } from './products/products';
+import { Product } from './pages/product/product/product';
 
 export const routes: Routes = [
     {
         path: '',
-        component: Home
+        component: Home,
+        children: [
+            { 
+                path: '',
+                component: Products,
+            },
+            {
+                path: 'product/:productId',
+                component: Product,
+            }
+        ]
     },
     {
         path: 'login',
@@ -16,8 +27,8 @@ export const routes: Routes = [
     },
     {
         path: 'admin',
-        component: Admin,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/admin/admin.routes').then(m => m.routes),
     },
     {
         path: '**',

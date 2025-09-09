@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Comments } from '../../../features/comments/comments/comments';
 
 @Component({
@@ -7,6 +8,11 @@ import { Comments } from '../../../features/comments/comments/comments';
   templateUrl: './product.html',
   styleUrl: './product.css'
 })
-export class Product {
+export class Product implements OnInit {
+  route = inject(ActivatedRoute);
 
+  ngOnInit(): void {
+    const productId = this.route.snapshot.params['productId'];
+    console.log(productId);
+  }
 }

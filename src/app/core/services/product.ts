@@ -5,6 +5,9 @@ import { Product } from '../interfaces/product.interface';
   providedIn: 'root'
 })
 export class ProductService {
+  get(arg0: any): import("@angular/router").MaybeAsync<Product | import("@angular/router").RedirectCommand> {
+    throw new Error('Method not implemented.');
+  }
   getAll(): Product[] {
     return [
       {
