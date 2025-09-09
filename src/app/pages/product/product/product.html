@@ -1,0 +1,27 @@
+<p>product works!</p>
+
+<div class="container py-5 pe-10">
+    <div class="row" style="height: 800px;">
+        Scrollez vers le bas !!
+    </div>
+</div>
+
+<div class="container py-5">
+    <h1>Comments</h1>
+    @defer (on viewport) {
+        <app-comments />
+    }
+    @loading {
+        Chargement....
+    }
+    @error {
+        Erreur lors du chargement des commentaires
+    }
+    @placeholder {
+        <div>
+            <span class="placeholder col-6"></span>
+            <span class="placeholder w-75"></span>
+            <span class="placeholder" style="width: 25%;"></span>
+        </div>
+    }
+</div>

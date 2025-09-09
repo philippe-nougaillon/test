@@ -1,0 +1,36 @@
+<h1 class="text-3xl font-bold underline">
+  navbar works!
+  <p class="mt-8">Time is => {{ today | date:'shortTime'}}</p>
+</h1>
+<div class="my-8">
+  <input type="search" placeholder="Rechercher" [(ngModel)]="searchInput" class="border p-2">
+  <button (click)="search()" class="border p-2">Rechercher</button>
+</div>
+
+<nav class="navbar navbar-light bg-light my-8">
+  <div class="container-fluid">
+    <a class="navbar-brand">My App</a>
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/">
+          Home
+        </a>
+      </li>
+      <div class="d-flex">
+        <div class="d-flex" role="search">
+          <button class="btn btn-primary" routerLink="/login">
+            Connexion
+          </button>
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="d-flex" role="search">
+          <button class="btn btn-primary" routerLink="/admin">
+            Admin
+          </button>
+        </div>
+      </div>
+    </ul>
+  </div>
+
+</nav>

@@ -1,0 +1,14 @@
+<p>products works! </p>
+
+<div id="products">
+    <div class="row mx-0">
+        @for (product of products; track product.id) {
+            <app-card   [product]="product" 
+                        (deleteProduct)="removeProduct($event)" 
+                        class="col-lg-4 col-md-6 pt-3"></app-card>
+        }
+        @empty {
+            <div  class="text-center">Aucun produit trouvé !</div>
+        }
+    </div>
+</div>
