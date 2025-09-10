@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { Product } from '../interfaces/product.interface';
 
 @Injectable({
@@ -6,6 +6,16 @@ import { Product } from '../interfaces/product.interface';
 })
 export class ProductService {
   products = signal<Product[]>([]);
+  searchProduct = signal<string>('');
+
+  productsSearched = computed<Product[]>(() => {
+    const str = this.searchProduct();
+    return str === '' ? this.products() : this.products().filter(product => product.title.includes(str));
+  });
+
+  setSearchValue(val: string) {
+    this.searchProduct.set(val);
+  }
   
   getAll(): void {
     this.products.set([

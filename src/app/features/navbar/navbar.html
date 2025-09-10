@@ -1,10 +1,9 @@
 <h1 class="text-3xl font-bold underline">
   navbar works!
-  <p class="mt-8">Time is => {{ today | date:'shortTime'}}</p>
 </h1>
+
 <div class="my-8">
-  <input type="search" placeholder="Rechercher" [(ngModel)]="searchInput" class="border p-2">
-  <button (click)="search()" class="border p-2">Rechercher</button>
+  <input type="search" placeholder="Rechercher" [formControl]="searchInput" class="border p-2">
 </div>
 
 <nav class="navbar navbar-light bg-light my-8">

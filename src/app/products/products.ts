@@ -10,7 +10,7 @@ import { ProductService } from '../core/services/product';
 })
 export class Products {
   private productService = inject(ProductService);
-  products = this.productService.products;
+  products = this.productService.productsSearched; 
 
   ngOnInit(): void {
     this.productService.getAll();

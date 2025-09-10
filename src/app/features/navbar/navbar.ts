@@ -1,20 +1,21 @@
-import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import { ProductService } from '../../core/services/product';
 
 @Component({
   selector: 'app-navbar',
-  imports: [FormsModule, DatePipe, RouterLink],
+  imports: [ReactiveFormsModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
-export class Navbar {
-  searchInput = '';
-  today: Date = new Date();
+export class Navbar implements OnInit {
+  searchInput: FormControl = new FormControl('');
+  private productService = inject(ProductService);
 
-  search() {
-    console.log(this.searchInput);
-    
+  ngOnInit(): void {
+    this.searchInput.valueChanges.subscribe(value => {
+      this.productService.setSearchValue(value as string);
+    })
   }
+  
 }
