@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Card } from "./card/card";
 import { ProductService } from '../core/services/product';
-import { Product } from '../core/interfaces/product.interface';
 
 @Component({
   selector: 'app-products',
@@ -11,14 +10,14 @@ import { Product } from '../core/interfaces/product.interface';
 })
 export class Products {
   private productService = inject(ProductService);
-  products: Product[] = [];
+  products = this.productService.products;
 
   ngOnInit(): void {
-    this.products = this.productService.getAll();
+    this.productService.getAll();
   }
 
   removeProduct(id: number) {
     console.log('removeProduct !!');
-    this.products = this.products.filter(product => product.id != id);
+    this.productService.delete(id);
   }
 }
