@@ -4,7 +4,7 @@ import { Product } from '../interfaces/product.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductOLDService {
   products = signal<Product[]>([]);
   searchProduct = signal<string>('');
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
-import { ProductService } from '../../core/services/product';
+import { ProductOLDService } from '../../core/services/product.old.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,7 @@ import { ProductService } from '../../core/services/product';
 })
 export class Navbar implements OnInit {
   searchInput: FormControl = new FormControl('');
-  private productService = inject(ProductService);
+  private productService = inject(ProductOLDService);
 
   ngOnInit(): void {
     this.searchInput.valueChanges.subscribe(value => {
