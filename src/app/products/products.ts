@@ -1,6 +1,7 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit, Signal } from '@angular/core';
 import { Card } from "./card/card";
 import { ProductService } from '../core/services/product.service';
+import { Product } from '../core/interfaces/product.interface';
 
 @Component({
   selector: 'app-products',
@@ -10,17 +11,16 @@ import { ProductService } from '../core/services/product.service';
 })
 export class Products implements OnInit {
   private productService = inject(ProductService);
-  //products = this.productService.productsSearched; 
-  products = this.productService.products;
+  products = this.productService.productsSearched; 
 
-  /* constructor(){
+  constructor(){
     effect(() => {
       console.log('Produit recherché ', this.productService.searchProduct());
 
       // By the way, store product searched string in the local database
-      localStorage.setItem('product_searched', JSON.stringify(this.productService.searchProduct()));
+      //localStorage.setItem('product_searched', JSON.stringify(this.productService.searchProduct()));
     });
-  } */
+  }
 
   ngOnInit(): void {
     //this.productService.getAll();
@@ -28,7 +28,12 @@ export class Products implements OnInit {
   }
 
   removeProduct(id: number) {
-    console.log('removeProduct !!');
-    this.productService.delete(id);
+    this.productService.delete(id).subscribe({
+            error: (err) => {
+                console.error(err)
+            }
+        });
+
+
   } 
 }
