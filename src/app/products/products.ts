@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { Card } from "./card/card";
 import { ProductService } from '../core/services/product';
 
@@ -11,6 +11,16 @@ import { ProductService } from '../core/services/product';
 export class Products {
   private productService = inject(ProductService);
   products = this.productService.productsSearched; 
+
+  constructor(){
+    effect(() => {
+      console.log('Produit recherché ', this.productService.searchProduct());
+
+      // By the way, store product searched string in the local database
+      localStorage.setItem('product_searched', JSON.stringify(this.productService.searchProduct()));
+    });
+
+  }
 
   ngOnInit(): void {
     this.productService.getAll();
