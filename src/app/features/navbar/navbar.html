@@ -1,6 +1,3 @@
-<h1 class="text-3xl font-bold underline">
-  navbar works!
-</h1>
 
 <div class="my-8">
   <input type="search" placeholder="Rechercher" [formControl]="searchInput" class="border p-2">
@@ -15,21 +12,21 @@
           Home
         </a>
       </li>
-      <div class="d-flex">
-        <div class="d-flex" role="search">
-          <button class="btn btn-primary" routerLink="/login">
-            Connexion
-          </button>
-        </div>
-      </div>
-      <div class="d-flex">
-        <div class="d-flex" role="search">
-          <button class="btn btn-primary" routerLink="/admin">
-            Admin
-          </button>
-        </div>
-      </div>
     </ul>
-  </div>
 
+    <div class="d-flex">
+      <div class="d-flex" role="search" >
+        <div class="position-relative me-2">
+          <input class="form-control" type="search" placeholder="Rechercher">
+        </div>
+        @if (isAuthenticated()) {
+            <app-avatar class="mx-2 "/>
+        }
+        @else {
+            <button class="btn btn-primary mr-5" routerLink="/login">Connexion</button>
+        }
+      </div>
+    </div>
+
+  </div>
 </nav>

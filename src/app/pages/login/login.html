@@ -1,3 +1,44 @@
-<p>login works!</p>
+<div class="text-center page-form">
+    <main class="form-signin ">
+        <form (ngSubmit)="login(myForm)" #myForm="ngForm">
+            <h1 class="h3 mb-3 fw-normal">Connexion</h1>
 
-<button (click)="login()" class="border p-4">Connexion</button>
+            @if (myForm.submitted && myForm.invalid) {
+                <div class="alert alert-danger" role="alert">
+                    @if (email.hasError('email')) {
+                        <span>Email invalide</span>
+                    }
+                    @else if (email.hasError('minlength')) {
+                        <span>
+                        Vous avez mis {{ email.getError('minlength').actualLength }} caractères, 
+                        il faut {{ email.getError('minlength').requiredLength }} caractères
+                        </span>
+                    }
+                    @else if (email.hasError('required')) {
+                        <span>Email requis</span>
+                    }
+                    @else if (password.hasError('required')) {
+                        <span>Mot de passe requis</span>
+                    }
+                </div>
+            }
+
+            <div class="form-floating">
+                <input name="email" type="email" id="floatingEmail" class="form-control" placeholder="name@example.com" minlength="5" required email ngModel #email="ngModel">
+                <label for="floatingEmail">Email</label>
+            </div>
+            <div class="form-floating">
+                <input  name="password" type="password" id="floatingPassword" class="form-control" placeholder="****" required ngModel #password="ngModel">
+                <label for="floatingPassword">Mot de passe</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="remember" [ngModel]="false"> Se rappeler de moi
+                </label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter</button>
+        </form>
+    </main>
+</div>

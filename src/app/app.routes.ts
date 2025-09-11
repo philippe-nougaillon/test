@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
-import { Login } from './pages/login/login';
+import { LoginComponent } from './pages/login/login';
 import { NotFound } from './pages/not-found/not-found';
 import { AuthGuard } from './core/guards/auth';
 import { Products } from './products/products';
@@ -23,7 +23,7 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        component: Login,        
+        component: LoginComponent,        
     },
     {
         path: 'admin',
